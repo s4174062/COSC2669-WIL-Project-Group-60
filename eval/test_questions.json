@@ -1,0 +1,17 @@
+[
+  {
+    "question": "How long do I have to apply for special consideration?",
+    "expected_answer": "Within two working days of the assessment date.",
+    "source_doc": "placeholder_policy"
+  },
+  {
+    "question": "Can I get an extension without supporting documentation?",
+    "expected_answer": "Yes, up to seven days, at the course coordinator's discretion.",
+    "source_doc": "placeholder_policy"
+  },
+  {
+    "question": "What is the capital of France?",
+    "expected_answer": "I don't have enough information to answer that.",
+    "source_doc": "N/A (adversarial/out-of-scope test case)"
+  }
+]
