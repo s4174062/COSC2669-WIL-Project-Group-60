@@ -1,17 +1,26 @@
 [
   {
-    "question": "How long do I have to apply for special consideration?",
-    "expected_answer": "Within two working days of the assessment date.",
-    "source_doc": "placeholder_policy"
+    "question": "How long before an assessment due date do I need to apply for an extension?",
+    "expected_answer": "Applications are submitted to the school/industry cluster at least one working day before the due date.",
+    "source_doc": "assessment_flexibility",
+    "type": "clear"
   },
   {
-    "question": "Can I get an extension without supporting documentation?",
-    "expected_answer": "Yes, up to seven days, at the course coordinator's discretion.",
-    "source_doc": "placeholder_policy"
+    "question": "What is the maximum length of a single leave of absence?",
+    "expected_answer": "Leave of absence must be for a specified amount of time, not exceeding one year.",
+    "source_doc": "leave_of_absence",
+    "type": "clear"
+  },
+  {
+    "question": "How is eligibility for a fee refund determined?",
+    "expected_answer": "Eligibility for a refund is determined with reference to the Approved Schedule of Fees and Charges.",
+    "source_doc": "refund_of_fees",
+    "type": "clear"
   },
   {
     "question": "What is the capital of France?",
     "expected_answer": "I don't have enough information to answer that.",
-    "source_doc": "N/A (adversarial/out-of-scope test case)"
+    "source_doc": "N/A (adversarial/out-of-scope test case)",
+    "type": "unsupported"
   }
 ]

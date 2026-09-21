@@ -1,0 +1,35 @@
+[
+  {
+    "id": "assessment_flexibility",
+    "title": "Assessment and Assessment Flexibility Policy",
+    "policy_id": 7,
+    "domain": "assessment",
+    "url": "https://policies.rmit.edu.au/document/view.php?id=7",
+    "file": "assessment_flexibility.html"
+  },
+  {
+    "id": "enrolment_procedure",
+    "title": "Enrolment Procedure",
+    "policy_id": 113,
+    "domain": "enrolment",
+    "url": "https://policies.rmit.edu.au/document/view.php?id=113&version=4",
+    "file": "enrolment_procedure.html"
+  },
+  {
+    "id": "refund_of_fees",
+    "title": "Refund of Fees Procedure",
+    "policy_id": 118,
+    "domain": "enrolment",
+    "url": "https://policies.rmit.edu.au/document/view.php?id=118",
+    "file": "refund_of_fees.html",
+    "note": "The notes listed enrolment fees as policies.rmit.edu.au document id=147. That page requires RMIT staff SSO, so this public Enrolment Policy procedure is used instead for policy-based fee responsibilities."
+  },
+  {
+    "id": "leave_of_absence",
+    "title": "Enrolment Procedure - Leave of Absence",
+    "policy_id": 115,
+    "domain": "enrolment",
+    "url": "https://policies.rmit.edu.au/document/view.php?id=115&version=4",
+    "file": "leave_of_absence.html"
+  }
+]

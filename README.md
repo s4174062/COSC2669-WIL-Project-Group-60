@@ -11,21 +11,32 @@
 ## Repo structure
 
 ```
-data/raw/          #source policy documents (PDF/HTML/text)
-data/processed/     #cleaned chunked text
-ingestion/          #convert chunk embed scripts
-retrieval/           #vector store + similarity search
-generation/          #prompt template + LLM call (Ollama)
-eval/                #test question set + evaluation harness
-app/                 #simple interface (CLI or Streamlit)
-notebooks/           #exploratory / prototyping notebooks
+data/raw/          # official RMIT Policy Register HTML
+data/processed/    # cleaned clause chunks
+data/sources.json  # knowledge-base catalogue
+ingestion/         # extract, chunk, embed, ingest
+retrieval/         # vector store + similarity search
+generation/        # prompt template + LLM call (Ollama)
+eval/              # test question set + evaluation harness
+app/               # CLI baseline assistant
 ```
+
+## Knowledge base
+
+Four official RMIT policy documents:
+
+1. Assessment and Assessment Flexibility Policy
+2. Enrolment Procedure
+3. Refund of Fees Procedure (public substitute for enrolment-fees document id=147, which requires staff SSO)
+4. Enrolment Procedure - Leave of Absence
 
 ## Setup
 
 ```bash
 python -m venv venv
-source venv/bin/activate
+source venv/bin/activate   # Windows: venv\Scripts\activate
 pip install -r requirements.txt
+python ingestion/ingest.py
 ollama pull llama3
+python app/app.py
 ```

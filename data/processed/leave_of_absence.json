@@ -1,0 +1,266 @@
+{
+  "source": {
+    "id": "leave_of_absence",
+    "title": "Enrolment Procedure - Leave of Absence",
+    "policy_id": 115,
+    "domain": "enrolment",
+    "url": "https://policies.rmit.edu.au/document/view.php?id=115&version=4",
+    "file": "leave_of_absence.html"
+  },
+  "clause_count": 33,
+  "chunk_count": 18,
+  "chunks": [
+    {
+      "id": "leave_of_absence_0",
+      "text": "Source: Enrolment Procedure - Leave of Absence\nSection: Section 1 - Context\n\n(1) RMIT students may apply for a leave of absence (LOA) while enrolled in their award program by submitting an application to the relevant area for approval. This procedure outlines LOA rules for RMIT students.",
+      "metadata": {
+        "source": "leave_of_absence",
+        "title": "Enrolment Procedure - Leave of Absence",
+        "domain": "enrolment",
+        "url": "https://policies.rmit.edu.au/document/view.php?id=115&version=4",
+        "section": "Section 1 - Context",
+        "subsection": "",
+        "heading": "",
+        "clauses": "1"
+      }
+    },
+    {
+      "id": "leave_of_absence_1",
+      "text": "Source: Enrolment Procedure - Leave of Absence\nSection: Section 2 - Authority\n\n(2) Authority for this document is established by the Enrolment Policy .",
+      "metadata": {
+        "source": "leave_of_absence",
+        "title": "Enrolment Procedure - Leave of Absence",
+        "domain": "enrolment",
+        "url": "https://policies.rmit.edu.au/document/view.php?id=115&version=4",
+        "section": "Section 2 - Authority",
+        "subsection": "",
+        "heading": "",
+        "clauses": "2"
+      }
+    },
+    {
+      "id": "leave_of_absence_2",
+      "text": "Source: Enrolment Procedure - Leave of Absence\nSection: Section 3 - Scope\n\n(3) This procedure applies to all student cohorts enrolled in an RMIT award program and Foundation Studies and University Pathways Fast Track.\n\n(4) LOA is not available to students in Victorian Certificate of Education or Victorian Certificate of Applied Learning programs.",
+      "metadata": {
+        "source": "leave_of_absence",
+        "title": "Enrolment Procedure - Leave of Absence",
+        "domain": "enrolment",
+        "url": "https://policies.rmit.edu.au/document/view.php?id=115&version=4",
+        "section": "Section 3 - Scope",
+        "subsection": "",
+        "heading": "",
+        "clauses": "3-4"
+      }
+    },
+    {
+      "id": "leave_of_absence_3",
+      "text": "Source: Enrolment Procedure - Leave of Absence\nSection: Section 4 - Procedure > Eligibility\n\n(5) Students may apply for LOA from RMIT for a defined period, in accordance with the processes prescribed by the University Secretary and Academic Registrar.\n\n(6) In considering an application for LOA, it is the student\u2019s responsibility to:\n1. seek appropriate advice before suspending their studies\n2. be aware of the potential impact of the absence on their ability to successfully complete the program\n3. be aware of the consequences that suspending their studies may have on their status as a student.",
+      "metadata": {
+        "source": "leave_of_absence",
+        "title": "Enrolment Procedure - Leave of Absence",
+        "domain": "enrolment",
+        "url": "https://policies.rmit.edu.au/document/view.php?id=115&version=4",
+        "section": "Section 4 - Procedure",
+        "subsection": "Eligibility",
+        "heading": "",
+        "clauses": "5-6"
+      }
+    },
+    {
+      "id": "leave_of_absence_4",
+      "text": "Source: Enrolment Procedure - Leave of Absence\nSection: Section 4 - Procedure > Eligibility\n\n(7) LOA for international students studying in Australia on a student visa can only be granted on compassionate or compelling grounds. Examples of such grounds are published on the RMIT website.\n1. Students studying in Australia on a student visa are advised to always seek advice including from the Department of Home Affairs prior to applying for LOA.\n\n(8) LOA is not normally available to students in the first semester (or study period) of their program unless they can demonstrate exceptional circumstances. Students enrolled in Fast Track programs who take an approved leave of absence will be required to recommence their courses on their return.",
+      "metadata": {
+        "source": "leave_of_absence",
+        "title": "Enrolment Procedure - Leave of Absence",
+        "domain": "enrolment",
+        "url": "https://policies.rmit.edu.au/document/view.php?id=115&version=4",
+        "section": "Section 4 - Procedure",
+        "subsection": "Eligibility",
+        "heading": "",
+        "clauses": "7-8"
+      }
+    },
+    {
+      "id": "leave_of_absence_5",
+      "text": "Source: Enrolment Procedure - Leave of Absence\nSection: Section 4 - Procedure > Eligibility\n\n(9) LOA is not available for prospective students who have been offered a place at RMIT and have not yet enrolled but wish to defer their studies for one or more semesters or study periods. In these instances, applicants may defer their enrolment in the offered place in accordance with admissions processes.\n\n(10) LOA may not be available to students in programs delivered with industry partners.\n\n(11) A student may be denied LOA at the discretion of the teaching school/industry cluster/college or RMIT Online where the program is in teach-out and the requested period of leave would mean the student is unable to complete the program requirements on time.",
+      "metadata": {
+        "source": "leave_of_absence",
+        "title": "Enrolment Procedure - Leave of Absence",
+        "domain": "enrolment",
+        "url": "https://policies.rmit.edu.au/document/view.php?id=115&version=4",
+        "section": "Section 4 - Procedure",
+        "subsection": "Eligibility",
+        "heading": "",
+        "clauses": "9-11"
+      }
+    },
+    {
+      "id": "leave_of_absence_6",
+      "text": "Source: Enrolment Procedure - Leave of Absence\nSection: Section 4 - Procedure > Eligibility\n\n(12) LOA processes for higher degree by research (HDR) students are managed in accordance with the HDR Admissions and Enrolment Procedure , and the Research Scholarship Terms and Condition as necessary.\n\n(13) A student may be denied LOA if they exceeded the maximum total of periods of leave in their program, as defined below.",
+      "metadata": {
+        "source": "leave_of_absence",
+        "title": "Enrolment Procedure - Leave of Absence",
+        "domain": "enrolment",
+        "url": "https://policies.rmit.edu.au/document/view.php?id=115&version=4",
+        "section": "Section 4 - Procedure",
+        "subsection": "Eligibility",
+        "heading": "",
+        "clauses": "12-13"
+      }
+    },
+    {
+      "id": "leave_of_absence_7",
+      "text": "Source: Enrolment Procedure - Leave of Absence\nSection: Section 4 - Procedure > Duration of Leave\n\n(14) LOA must have a definitive start date and must be for a specified amount of time, not exceeding one year.\n\n(15) LOA can apply to:\n1. a standard study period for higher education coursework students\n2. the relevant study period for Vocational Education, Foundation Studies and University Pathways Fast Track students\n3. any approved period for HDR students.\n\n(16) The total maximum period of leave for a student in a coursework program is 50% of total duration of the program, unless exceptional circumstances apply, and relevant approval is obtained.",
+      "metadata": {
+        "source": "leave_of_absence",
+        "title": "Enrolment Procedure - Leave of Absence",
+        "domain": "enrolment",
+        "url": "https://policies.rmit.edu.au/document/view.php?id=115&version=4",
+        "section": "Section 4 - Procedure",
+        "subsection": "Duration of Leave",
+        "heading": "",
+        "clauses": "14-16"
+      }
+    },
+    {
+      "id": "leave_of_absence_8",
+      "text": "Source: Enrolment Procedure - Leave of Absence\nSection: Section 4 - Procedure > Duration of Leave\n\n(17) Program structure and course availability may affect the period of LOA granted.",
+      "metadata": {
+        "source": "leave_of_absence",
+        "title": "Enrolment Procedure - Leave of Absence",
+        "domain": "enrolment",
+        "url": "https://policies.rmit.edu.au/document/view.php?id=115&version=4",
+        "section": "Section 4 - Procedure",
+        "subsection": "Duration of Leave",
+        "heading": "",
+        "clauses": "17"
+      }
+    },
+    {
+      "id": "leave_of_absence_9",
+      "text": "Source: Enrolment Procedure - Leave of Absence\nSection: Section 4 - Procedure > Approving Authority and Reporting\n\n(18) The teaching school/industry cluster/college or RMIT Online may grant LOA to a student; in exceptional circumstances the University Secretary and Academic Registrar may do this.\n\n(19) For coursework students the Dean/Head of School/Cluster Director or nominee is authorised to approve applications for LOA of up to 50% of total duration of the program, or LOA that will bring the student\u2019s total leave in the program to two years.",
+      "metadata": {
+        "source": "leave_of_absence",
+        "title": "Enrolment Procedure - Leave of Absence",
+        "domain": "enrolment",
+        "url": "https://policies.rmit.edu.au/document/view.php?id=115&version=4",
+        "section": "Section 4 - Procedure",
+        "subsection": "Approving Authority and Reporting",
+        "heading": "",
+        "clauses": "18-19"
+      }
+    },
+    {
+      "id": "leave_of_absence_10",
+      "text": "Source: Enrolment Procedure - Leave of Absence\nSection: Section 4 - Procedure > Approving Authority and Reporting\n\n(20) In all instances, the University Secretary and Academic Registrar must be satisfied that LOA applications for international students studying in Australia on a student visa, including those exceeding the maximum period, demonstrate compassionate or compelling grounds prior to be granted.\n\n(21) LOA for a cumulative total of more than two years or more than 50% of the duration of the program may be approved in exceptional circumstances, by either the:\n1. relevant College Deputy Vice-Chancellor, for coursework students\n2. Associate Deputy Vice-Chancellor Research Training and Development, for HDR students in accordance with the provisions of the HDR Admissions and Enrolment Procedure .",
+      "metadata": {
+        "source": "leave_of_absence",
+        "title": "Enrolment Procedure - Leave of Absence",
+        "domain": "enrolment",
+        "url": "https://policies.rmit.edu.au/document/view.php?id=115&version=4",
+        "section": "Section 4 - Procedure",
+        "subsection": "Approving Authority and Reporting",
+        "heading": "",
+        "clauses": "20-21"
+      }
+    },
+    {
+      "id": "leave_of_absence_11",
+      "text": "Source: Enrolment Procedure - Leave of Absence\nSection: Section 4 - Procedure > Approving Authority and Reporting\n\n(22) If an application for LOA is rejected or varied, the school/Industry Cluster or Academic Registrar's Group (for students studying in Australia on a student visa) must inform the student of the reasons for the decision and details of available review processes.\n\n(23) For international students studying in Australia on a student visa, the University will report the LOA to the Department of Home Affairs .\n1. Reporting the LOA may affect the student\u2019s visa and the student may be required by the Department of Home Affairs to leave Australia while they are not enrolled.\n2. In all instances, students studying in Australia on a student visa are advised to seek advice, including from the Department of Home Affairs , on their visa status and conditions.",
+      "metadata": {
+        "source": "leave_of_absence",
+        "title": "Enrolment Procedure - Leave of Absence",
+        "domain": "enrolment",
+        "url": "https://policies.rmit.edu.au/document/view.php?id=115&version=4",
+        "section": "Section 4 - Procedure",
+        "subsection": "Approving Authority and Reporting",
+        "heading": "",
+        "clauses": "22-23"
+      }
+    },
+    {
+      "id": "leave_of_absence_12",
+      "text": "Source: Enrolment Procedure - Leave of Absence\nSection: Section 4 - Procedure > Fee Implications\n\n(24) Where LOA is applied to standard semester, students must withdraw from courses in the flexible term during their period of leave to avoid remaining liable for those tuition fees.\n\n(25) Students who take an approved LOA before the relevant census date will have the relevant paid fees re-credited to their student account, excluding any applicable penalties. This credit will be applied to future fee liabilities or the student may apply for a refund.",
+      "metadata": {
+        "source": "leave_of_absence",
+        "title": "Enrolment Procedure - Leave of Absence",
+        "domain": "enrolment",
+        "url": "https://policies.rmit.edu.au/document/view.php?id=115&version=4",
+        "section": "Section 4 - Procedure",
+        "subsection": "Fee Implications",
+        "heading": "",
+        "clauses": "24-25"
+      }
+    },
+    {
+      "id": "leave_of_absence_13",
+      "text": "Source: Enrolment Procedure - Leave of Absence\nSection: Section 4 - Procedure > Fee Implications\n\n(26) Students will remain liable for fees and may incur an academic penalty if they submit a request for LOA after the relevant census date. In special circumstances, students may apply for a remission of debt.\n\n(27) Where the school/industry cluster/college or RMIT Online recommends LOA for a student whose enrolment has been discontinued as part of the late enrolment process, a late enrolment fee may be applied.",
+      "metadata": {
+        "source": "leave_of_absence",
+        "title": "Enrolment Procedure - Leave of Absence",
+        "domain": "enrolment",
+        "url": "https://policies.rmit.edu.au/document/view.php?id=115&version=4",
+        "section": "Section 4 - Procedure",
+        "subsection": "Fee Implications",
+        "heading": "",
+        "clauses": "26-27"
+      }
+    },
+    {
+      "id": "leave_of_absence_14",
+      "text": "Source: Enrolment Procedure - Leave of Absence\nSection: Section 4 - Procedure > Fee Implications\n\n(28) A student granted LOA remains an RMIT student and is:\n1. eligible to appeal a University decision to suspend, expel or exclude them, or a student conduct decision\n2. entitled to retain but not use their RMIT student card\n3. entitled to have and use a student email account\n4. entitled to apply for credit\n5. entitled to use academic and student support services\n6. responsible for checking their RMIT student email account\n7. responsible for maintaining up-to-date contact details on their student record\n8. responsible for re-enrolling by the relevant dates.",
+      "metadata": {
+        "source": "leave_of_absence",
+        "title": "Enrolment Procedure - Leave of Absence",
+        "domain": "enrolment",
+        "url": "https://policies.rmit.edu.au/document/view.php?id=115&version=4",
+        "section": "Section 4 - Procedure",
+        "subsection": "Fee Implications",
+        "heading": "",
+        "clauses": "28"
+      }
+    },
+    {
+      "id": "leave_of_absence_15",
+      "text": "Source: Enrolment Procedure - Leave of Absence\nSection: Section 4 - Procedure > Authority of the University Secretary and Academic Registrar\n\n(29) The University Secretary and Academic Registrar may grant an LOA on administrative grounds in exceptional circumstances.\n\n(30) The University Secretary and Academic Registrar or Registrar of the institution may, in exceptional circumstances, authorise an LOA to be backdated to before the relevant course census date, which will determine fee entitlements. Such decisions are final.",
+      "metadata": {
+        "source": "leave_of_absence",
+        "title": "Enrolment Procedure - Leave of Absence",
+        "domain": "enrolment",
+        "url": "https://policies.rmit.edu.au/document/view.php?id=115&version=4",
+        "section": "Section 4 - Procedure",
+        "subsection": "Authority of the University Secretary and Academic Registrar",
+        "heading": "",
+        "clauses": "29-30"
+      }
+    },
+    {
+      "id": "leave_of_absence_16",
+      "text": "Source: Enrolment Procedure - Leave of Absence\nSection: Section 4 - Procedure > Review of Determinations\n\n(31) The student may seek a review of a decision to deny their application for LOA or approval of LOA for a different period than requested.\n\n(32) The student must request such a review within 20 working days of the date of the email notifying them of the decision, by email to (as relevant):\n1. (for international students studying on a student visa in Australia who have had their LOA rejected, including HDR students) the Associate Director, Enrolment and Student Records. The Enrolment and Student Records team may consult with Education Regulation Compliance Assurance on ESOS matters as required\n2. (for other students, excluding HDR students, who have had their LOA rejected by their Dean/Head of School/Cluster Director) the College Associate Deputy Vice-Chancellor Learning and Teaching\n3. (for HDR students seeking review of an LOA decision by a Dean/Head of School/Industry Cluster) the Associate Deputy Vice-Chancellor Research, Training and Development\n4. (for HDR students seeking review of a decision by the Associate Deputy Vice-Chancellor Research, Training and Development on a request for LOA longer than one year, or LOA while the student is on an extension beyond the maximum period of candidature) the Deputy Vice-Chancellor Research and Innovation.",
+      "metadata": {
+        "source": "leave_of_absence",
+        "title": "Enrolment Procedure - Leave of Absence",
+        "domain": "enrolment",
+        "url": "https://policies.rmit.edu.au/document/view.php?id=115&version=4",
+        "section": "Section 4 - Procedure",
+        "subsection": "Review of Determinations",
+        "heading": "",
+        "clauses": "31-32"
+      }
+    },
+    {
+      "id": "leave_of_absence_17",
+      "text": "Source: Enrolment Procedure - Leave of Absence\nSection: Section 4 - Procedure > Review of Determinations\n\n(33) Students studying on a student visa who are not satisfied with the outcome of a review of the decision to deny their application for LOA or approval of LOA for a different period, may apply for an external review of the decision as follows:\n1. for higher education students: National Student Ombudsman\n2. for vocational education students: Victorian Ombudsman .",
+      "metadata": {
+        "source": "leave_of_absence",
+        "title": "Enrolment Procedure - Leave of Absence",
+        "domain": "enrolment",
+        "url": "https://policies.rmit.edu.au/document/view.php?id=115&version=4",
+        "section": "Section 4 - Procedure",
+        "subsection": "Review of Determinations",
+        "heading": "",
+        "clauses": "33"
+      }
+    }
+  ]
+}
