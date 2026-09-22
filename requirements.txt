@@ -1,7 +1,8 @@
-sentence-transformers
-chromadb
-ollama
+sentence-transformers==6.1.0
+chromadb==1.5.9
+ollama==0.6.2
+beautifulsoup4==4.15.0
+pytest==8.4.2
 langchain
 streamlit
 pypdf
-beautifulsoup4

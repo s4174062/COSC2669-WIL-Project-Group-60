@@ -13,17 +13,23 @@ import sys
 from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
-INGESTION_DIR = Path(__file__).resolve().parent
-sys.path.insert(0, str(INGESTION_DIR))
+sys.path.insert(0, str(REPO_ROOT))
+
+from config import (
+    DEFAULT_TOP_K,
+    PROCESSED_DIR,
+    RAW_DIR,
+    SOURCES_PATH,
+    add_project_paths,
+)
+
+add_project_paths()
 
 from chunk import chunk_clauses
-from embed import MODEL_NAME, get_collection, replace_all_chunks
+from embed import replace_all_chunks
 from extract import extract_from_file
-from sentence_transformers import SentenceTransformer
-
-RAW_DIR = REPO_ROOT / "data" / "raw"
-PROCESSED_DIR = REPO_ROOT / "data" / "processed"
-SOURCES_PATH = REPO_ROOT / "data" / "sources.json"
+from retriever import retrieve_hits
+from verify import verify_ingest
 
 SANITY_QUERIES = [
     "How long before an assessment due date do I need to apply for an extension?",
@@ -93,41 +99,31 @@ def ingest() -> list[dict]:
         )
         print(f"{source['title']}: {len(clauses)} clauses -> {len(doc_records)} chunks")
 
+    # reset_collection() inside replace_all_chunks drops the old index first.
     replace_all_chunks(all_records)
     summary_path = PROCESSED_DIR / "ingest_summary.json"
     summary_path.write_text(
         json.dumps({"documents": processed_docs, "total_chunks": len(all_records)}, indent=2),
         encoding="utf-8",
     )
+    verify_ingest(all_records)
     return all_records
 
 
-def sanity_check(top_k: int = 3) -> None:
-    collection = get_collection()
-    count = collection.count()
-    if count == 0:
-        print("Vector store is empty; skip retrieval check.")
-        return
-
-    model = SentenceTransformer(MODEL_NAME)
-    print(f"\nRetrieval sanity check ({count} chunks, top-{top_k}):")
+def sanity_check(top_k: int = DEFAULT_TOP_K) -> None:
+    print(f"\nRetrieval sanity check (top-{top_k}):")
     for query in SANITY_QUERIES:
-        embedding = model.encode([query]).tolist()
-        results = collection.query(
-            query_embeddings=embedding,
-            n_results=min(top_k, count),
-            include=["documents", "metadatas", "distances"],
-        )
+        hits = retrieve_hits(query, top_k=top_k)
         print(f"\nQ: {query}")
-        documents = results["documents"][0]
-        metadatas = results["metadatas"][0]
-        distances = results["distances"][0]
-        for i, (doc, meta, dist) in enumerate(zip(documents, metadatas, distances)):
-            preview = " ".join(doc.split())[:180]
+        for i, hit in enumerate(hits):
+            meta = hit["metadata"]
+            preview = " ".join((hit["text"] or "").split())[:180]
+            dist = hit["distance"]
+            dist_text = f"{dist:.3f}" if isinstance(dist, (int, float)) else "n/a"
             print(
                 f"  {i + 1}. {meta.get('title')} | {meta.get('section')} | "
                 f"{meta.get('heading') or meta.get('subsection')} "
-                f"(clauses {meta.get('clauses') or 'n/a'}, dist={dist:.3f})"
+                f"(clauses {meta.get('clauses') or 'n/a'}, dist={dist_text})"
             )
             print(f"     {preview}...")
 

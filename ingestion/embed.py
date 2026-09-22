@@ -2,25 +2,36 @@
 Embeds text chunks and stores them in a local Chroma collection.
 """
 
+import sys
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 import chromadb
 from sentence_transformers import SentenceTransformer
 
-MODEL_NAME = "all-MiniLM-L6-v2"
-COLLECTION_NAME = "policy_chunks"
-REPO_ROOT = Path(__file__).resolve().parents[1]
-DB_PATH = str(REPO_ROOT / "chroma_db")
+from config import COLLECTION_NAME, DB_PATH, EMBEDDING_MODEL
+
+MODEL_NAME = EMBEDDING_MODEL
+_EMBEDDING_MODEL = None
+
+
+def get_embedding_model():
+    """Load MiniLM once and reuse it for ingest and retrieval."""
+    global _EMBEDDING_MODEL
+    if _EMBEDDING_MODEL is None:
+        _EMBEDDING_MODEL = SentenceTransformer(EMBEDDING_MODEL)
+    return _EMBEDDING_MODEL
 
 
 def get_collection():
-    client = chromadb.PersistentClient(path=DB_PATH)
+    client = chromadb.PersistentClient(path=str(DB_PATH))
     return client.get_or_create_collection(COLLECTION_NAME)
 
 
 def reset_collection():
     """Drop and recreate the policy collection so ingest can rebuild cleanly."""
-    client = chromadb.PersistentClient(path=DB_PATH)
+    client = chromadb.PersistentClient(path=str(DB_PATH))
     try:
         client.delete_collection(COLLECTION_NAME)
     except Exception:
@@ -30,10 +41,11 @@ def reset_collection():
 
 def add_chunks(chunks: list[str], source: str = "unknown", metadatas: list[dict] | None = None):
     """Embed and add a list of text chunks to the vector store."""
-    model = SentenceTransformer(MODEL_NAME)
+    model = get_embedding_model()
     collection = get_collection()
 
-    embeddings = model.encode(chunks).tolist()
+    encoded = model.encode(chunks)
+    embeddings = encoded.tolist() if hasattr(encoded, "tolist") else encoded
     ids = [f"{source}_{i}" for i in range(len(chunks))]
     if metadatas is None:
         metadatas = [{"source": source} for _ in chunks]
@@ -55,11 +67,12 @@ def replace_all_chunks(records: list[dict]):
         raise ValueError("No chunks to index.")
 
     collection = reset_collection()
-    model = SentenceTransformer(MODEL_NAME)
+    model = get_embedding_model()
     documents = [record["text"] for record in records]
     ids = [record["id"] for record in records]
     metadatas = [record["metadata"] for record in records]
-    embeddings = model.encode(documents).tolist()
+    encoded = model.encode(documents)
+    embeddings = encoded.tolist() if hasattr(encoded, "tolist") else encoded
 
     collection.add(
         documents=documents,

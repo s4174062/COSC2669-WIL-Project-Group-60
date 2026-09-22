@@ -5,3 +5,9 @@ __pycache__/
 .ipynb_checkpoints/
 chroma_db/
 *.log
+.pytest_cache/
+
+# Keep the results folder; ignore timestamped eval runs only.
+eval/results/*
+!eval/results/.gitkeep
+!eval/results/baseline-v1.json
