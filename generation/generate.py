@@ -3,9 +3,22 @@ Takes retrieved chunks + a question, builds a strict grounded prompt,
 and calls a local Ollama model.
 """
 
+from pathlib import Path
+import sys
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+
 import ollama
 
-MODEL_NAME = "llama3"
+from config import (
+    GENERATION_MODEL,
+    OLLAMA_MODEL_MISSING_MESSAGE,
+    OLLAMA_NOT_RUNNING_MESSAGE,
+    OllamaModelMissingError,
+    OllamaNotRunningError,
+)
+
+MODEL_NAME = GENERATION_MODEL
 
 # Deterministic decoding so eval runs are reproducible: temperature 0 plus a
 # fixed seed means the same question + context gives the same answer each run.
@@ -23,6 +36,27 @@ Question: {question}
 Answer:"""
 
 
+def _raise_ollama_error(exc: Exception) -> None:
+    """Map known Ollama failures; re-raise anything unexpected."""
+    status = getattr(exc, "status_code", None)
+    message = str(exc).lower()
+    connection_markers = (
+        "connection refused",
+        "connecterror",
+        "connect error",
+        "connectionerror",
+        "failed to connect",
+        "winerror 10061",
+        "actively refused",
+        "name or service not known",
+    )
+    if any(marker in message or marker in type(exc).__name__.lower() for marker in connection_markers):
+        raise OllamaNotRunningError(OLLAMA_NOT_RUNNING_MESSAGE) from exc
+    if status == 404 or "not found" in message or ("pull" in message and "model" in message):
+        raise OllamaModelMissingError(OLLAMA_MODEL_MISSING_MESSAGE) from exc
+    raise exc
+
+
 def generate_answer(question: str, context_chunks: list[str]) -> str:
     context = "\n\n".join(context_chunks)
     prompt = PROMPT_TEMPLATE.format(context=context, question=question)
@@ -30,7 +64,6 @@ def generate_answer(question: str, context_chunks: list[str]) -> str:
     response = ollama.chat(
         model=MODEL_NAME,
         messages=[{"role": "user", "content": prompt}],
-        options=GENERATION_OPTIONS,
     )
     return response["message"]["content"]
 

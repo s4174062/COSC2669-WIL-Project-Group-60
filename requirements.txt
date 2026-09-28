@@ -2,4 +2,3 @@ sentence-transformers
 chromadb
 ollama
 pypdf
-beautifulsoup4

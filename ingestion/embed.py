@@ -6,6 +6,11 @@ It clears any existing collection first so re-running is always a clean
 rebuild rather than an accumulation of duplicate/stale chunks.
 """
 
+import sys
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+
 import os
 import sys
 
@@ -18,24 +23,24 @@ from chunking import chunk_text
 MODEL_NAME = "all-MiniLM-L6-v2"
 COLLECTION_NAME = "policy_chunks"
 DB_PATH = "./chroma_db"
-RAW_DATA_DIR = os.path.join(os.path.dirname(__file__), "..", "data", "raw")
 
 
-def get_collection(reset: bool = False):
+def get_collection():
     client = chromadb.PersistentClient(path=DB_PATH)
-    if reset:
-        try:
-            client.delete_collection(COLLECTION_NAME)
-        except Exception:
-            pass  # collection didn't exist yet, nothing to delete
     return client.get_or_create_collection(COLLECTION_NAME)
 
 
-def add_chunks(chunks: list[str], source: str, collection):
+def add_chunks(chunks: list[str], source: str = "unknown"):
+    """Embed and add a list of text chunks to the vector store."""
     model = SentenceTransformer(MODEL_NAME)
+    collection = get_collection()
+
     embeddings = model.encode(chunks).tolist()
     ids = [f"{source}_{i}" for i in range(len(chunks))]
-    metadatas = [{"source": source} for _ in chunks]
+    if metadatas is None:
+        metadatas = [{"source": source} for _ in chunks]
+    else:
+        metadatas = [{**{"source": source}, **meta} for meta in metadatas]
 
     collection.add(
         documents=chunks,
@@ -44,6 +49,29 @@ def add_chunks(chunks: list[str], source: str, collection):
         metadatas=metadatas,
     )
     print(f"Added {len(chunks)} chunks from '{source}' to the vector store.")
+
+
+def replace_all_chunks(records: list[dict]):
+    """Rebuild the collection from records with text/id/metadata keys."""
+    if not records:
+        raise ValueError("No chunks to index.")
+
+    collection = reset_collection()
+    model = get_embedding_model()
+    documents = [record["text"] for record in records]
+    ids = [record["id"] for record in records]
+    metadatas = [record["metadata"] for record in records]
+    encoded = model.encode(documents)
+    embeddings = encoded.tolist() if hasattr(encoded, "tolist") else encoded
+
+    collection.add(
+        documents=documents,
+        embeddings=embeddings,
+        ids=ids,
+        metadatas=metadatas,
+    )
+    print(f"Indexed {len(records)} chunks into '{COLLECTION_NAME}'.")
+    return collection
 
 
 def document_title(text: str, fallback: str) -> str:
@@ -86,4 +114,4 @@ def ingest_all_raw_documents():
 
 
 if __name__ == "__main__":
-    ingest_all_raw_documents()
+    print("Placeholder embedding is disabled. Run ingestion/ingest.py instead.")

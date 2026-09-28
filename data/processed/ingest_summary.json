@@ -1,0 +1,29 @@
+{
+  "documents": [
+    {
+      "id": "assessment_flexibility",
+      "title": "Assessment and Assessment Flexibility Policy",
+      "clauses": 81,
+      "chunks": 35
+    },
+    {
+      "id": "enrolment_procedure",
+      "title": "Enrolment Procedure",
+      "clauses": 46,
+      "chunks": 26
+    },
+    {
+      "id": "refund_of_fees",
+      "title": "Refund of Fees Procedure",
+      "clauses": 11,
+      "chunks": 8
+    },
+    {
+      "id": "leave_of_absence",
+      "title": "Enrolment Procedure - Leave of Absence",
+      "clauses": 33,
+      "chunks": 18
+    }
+  ],
+  "total_chunks": 87
+}
