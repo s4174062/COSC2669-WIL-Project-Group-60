@@ -7,6 +7,10 @@ import ollama
 
 MODEL_NAME = "llama3"
 
+# Deterministic decoding so eval runs are reproducible: temperature 0 plus a
+# fixed seed means the same question + context gives the same answer each run.
+GENERATION_OPTIONS = {"temperature": 0, "seed": 42}
+
 PROMPT_TEMPLATE = """You are a university policy assistant. Answer the question
 using ONLY the context below. If the answer is not contained in the context,
 say "I don't have enough information to answer that" rather than guessing.
@@ -26,12 +30,12 @@ def generate_answer(question: str, context_chunks: list[str]) -> str:
     response = ollama.chat(
         model=MODEL_NAME,
         messages=[{"role": "user", "content": prompt}],
+        options=GENERATION_OPTIONS,
     )
     return response["message"]["content"]
 
 
 if __name__ == "__main__":
-    #test
     fake_context = [
         "Special Consideration applications must be submitted within two "
         "working days of the assessment date."

@@ -1,7 +1,5 @@
 sentence-transformers
 chromadb
 ollama
-langchain
-streamlit
 pypdf
 beautifulsoup4
