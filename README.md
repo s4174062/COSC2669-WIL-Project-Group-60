@@ -9,57 +9,33 @@
 ## Repo structure
 
 ```
-config.py           # shared models, paths, and baseline settings
+config.py           # shared models, paths, and settings
 data/raw/           # official RMIT Policy Register HTML
 data/processed/     # cleaned clause chunks
 data/sources.json   # knowledge-base catalogue
 ingestion/          # extract, chunk, embed, ingest, verify
 retrieval/          # vector store + similarity search
-generation/         # baseline prompt + Ollama call
-eval/               # test questions + baseline evaluation runner
-app/                # CLI baseline assistant
-tests/              # unit tests for the baseline pipeline
+generation/         # prompt + Ollama call
+verification/       # missing-info detection + faithfulness check
+eval/               # labelled questions + evaluation runner
+app/                # baseline CLI and enhanced pipelines
+tests/              # unit tests
 ```
 
-<<<<<<< HEAD
-
-## Setup
-
-You need Python 3.10 or newer (developed on 3.11) and [Ollama](https://ollama.com).
-
-```bash
-# 1. Create and activate an environment
-conda create -n policy-rag python=3.11
-conda activate policy-rag
-
-# 2. Install Python dependencies
-python -m pip install -r requirements.txt
-
-# 3. Get the local model (Ollama must be installed and running)
-ollama pull llama3
-
-# 4. Build the vector store from data/raw (run from the project root)
-python ingestion/embed.py
-```
-
-Step 4 should print one "Added N chunks" line per document, then `Total documents indexed: 4`. The first run also downloads the embedding model (about 90 MB). The vector store lives in `./chroma_db` (git-ignored), so **every person builds their own**. Re-run `embed.py` whenever `data/raw/` changes; it rebuilds the collection from scratch.
-
-> **Run all scripts from the project root.** The vector store path is relative to your current directory, so running `embed.py` and `pipeline.py` from different folders creates two separate `chroma_db` folders and retrieval comes back empty.
-=======
 ## Knowledge base
 
 Four official RMIT policy documents:
 
 1. Assessment and Assessment Flexibility Policy
 2. Enrolment Procedure
-3. Refund of Fees Procedure (public substitute for enrolment-fees document id=147, which requires staff SSO)
+3. Refund of Fees Procedure
 4. Enrolment Procedure - Leave of Absence
 
-This repository currently implements the **baseline** RAG pipeline only: ingest, dense retrieve, generate. It does not add missing-information detection or evidence verification.
+The **baseline** path is retrieve then generate. The **enhanced** path adds missing-information detection and a faithfulness check that can withhold an unsupported draft.
 
 ## Setup
 
-From the repository root:
+You need Python 3.10 or newer and [Ollama](https://ollama.com). Run all commands from the repository root so `chroma_db/` is created in one place (`config.py` resolves that path from the repo, not the current folder).
 
 ```bash
 python -m venv venv
@@ -69,7 +45,7 @@ python ingestion/ingest.py
 ollama pull llama3
 ```
 
-`chroma_db/` is created locally by ingest and is not committed.
+`chroma_db/` is local and git-ignored. Rebuild it with `python ingestion/ingest.py` after changing the four HTML sources.
 
 ## Commands
 
@@ -79,8 +55,9 @@ python ingestion/ingest.py
 python ingestion/verify.py
 python retrieval/retriever.py
 python app/app.py
-python eval/run_baseline.py
+python app/pipeline.py
+python eval/validate_test_set.py
+python eval/evaluate.py
 ```
 
 Shared settings live in `config.py`: embedding model `all-MiniLM-L6-v2`, generation model `llama3`, collection `policy_chunks`, and `top_k=3`.
->>>>>>> 7c2ea26bd8cc73aba4f79aab1c7ee51d967f230c

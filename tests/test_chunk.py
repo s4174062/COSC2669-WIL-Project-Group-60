@@ -1,4 +1,4 @@
-from chunk import chunk_clauses
+from chunking import chunk_clauses
 
 
 def test_chunk_clauses_groups_same_heading():

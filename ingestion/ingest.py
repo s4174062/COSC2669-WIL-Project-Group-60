@@ -25,7 +25,7 @@ from config import (
 
 add_project_paths()
 
-from chunk import chunk_clauses
+from chunking import chunk_clauses
 from embed import replace_all_chunks
 from extract import extract_from_file
 from retriever import retrieve_hits

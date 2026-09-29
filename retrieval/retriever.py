@@ -18,31 +18,14 @@ add_project_paths()
 
 from embed import get_collection, get_embedding_model
 
-# Load the embedding model once and reuse it, rather than reloading it on
-# every query (slow, and it floods the console with loading messages).
-_model = None
+
+def _get_model():
+    """Alias used by eval/inspect_retrieval.py."""
+    return get_embedding_model()
 
 
-def _get_model() -> SentenceTransformer:
-    global _model
-    if _model is None:
-        _model = SentenceTransformer(MODEL_NAME)
-    return _model
-
-# Load the embedding model once and reuse it, rather than reloading it on
-# every query (slow, and it floods the console with loading messages).
-_model = None
-
-
-def _get_model() -> SentenceTransformer:
-    global _model
-    if _model is None:
-        _model = SentenceTransformer(MODEL_NAME)
-    return _model
-
-
-def retrieve(query: str, top_k: int = 3) -> list[str]:
-    model = SentenceTransformer(MODEL_NAME)
+def retrieve_hits(query: str, top_k: int = DEFAULT_TOP_K) -> list[dict]:
+    """Query Chroma and return structured hits: text, metadata, distance."""
     collection = get_collection()
     count = collection.count()
     if count == 0:
@@ -74,12 +57,14 @@ def retrieve(query: str, top_k: int = 3) -> list[str]:
 
 
 def retrieve(query: str, top_k: int = DEFAULT_TOP_K) -> list[str]:
-    """Compatibility helper: return only passage text from retrieve_hits()."""
+    """Return only passage text. Used by the baseline/enhanced pipelines."""
     return [hit["text"] for hit in retrieve_hits(query, top_k=top_k)]
 
 
 if __name__ == "__main__":
-    #requires embed.py to run first so the store isn't empty
-    query = "How long do I have to apply for special consideration?"
-    for i, chunk in enumerate(retrieve(query)):
-        print(f"--- result {i} ---\n{chunk}\n")
+    query = "How long before an assessment due date do I need to apply for an extension?"
+    for i, hit in enumerate(retrieve_hits(query)):
+        meta = hit["metadata"]
+        print(f"--- result {i} | {meta.get('title')} | {meta.get('heading')} ---")
+        print(hit["text"])
+        print()

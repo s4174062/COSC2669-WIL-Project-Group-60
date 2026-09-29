@@ -16,7 +16,7 @@ and reports:
   - a CSV with blank grade columns for manual correctness grading
 
 Run from anywhere:  python eval/evaluate.py
-Requires the vector store to be built (python ingestion/embed.py) and Ollama
+Requires the vector store to be built (python ingestion/ingest.py) and Ollama
 to be running. Redirect output to keep a record:
     python eval/evaluate.py > eval/results/run_output.txt
 """

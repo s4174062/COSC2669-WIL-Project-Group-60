@@ -61,10 +61,15 @@ def generate_answer(question: str, context_chunks: list[str]) -> str:
     context = "\n\n".join(context_chunks)
     prompt = PROMPT_TEMPLATE.format(context=context, question=question)
 
-    response = ollama.chat(
-        model=MODEL_NAME,
-        messages=[{"role": "user", "content": prompt}],
-    )
+    try:
+        response = ollama.chat(
+            model=MODEL_NAME,
+            messages=[{"role": "user", "content": prompt}],
+            options=GENERATION_OPTIONS,
+        )
+    except Exception as exc:
+        _raise_ollama_error(exc)
+
     return response["message"]["content"]
 
 

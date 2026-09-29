@@ -69,7 +69,99 @@ AMBIGUOUS_PATTERNS = [
             "different application processes."
         ),
     ),
-    #can add more patterns here
+    AmbiguityPattern(
+        trigger="extension",
+        qualifiers=[
+            "sick", "illness", "ill", "unwell", "unforeseen", "unexpected",
+            "exam", "how long", "maximum", "outcome", "notify",
+            "working day", "due date", "seven", "calendar",
+            "documentation", "evidence", "equitable",
+        ],
+        clarification_direct=(
+            "What unforeseen short-term circumstance is preventing you "
+            "from completing the work? Extension eligibility depends on "
+            "that, and on whether the due date has already passed."
+        ),
+        clarification_rephrase=(
+            "Could you rephrase your question to include the unforeseen "
+            "short-term circumstance and whether the due date has already "
+            "passed? Extension eligibility depends on those details."
+        ),
+    ),
+    AmbiguityPattern(
+        trigger="first semester",
+        qualifiers=["exceptional", "exception"],
+        clarification_direct=(
+            "Leave of absence is not normally available in the first "
+            "semester unless you can demonstrate exceptional circumstances. "
+            "Do you have exceptional circumstances?"
+        ),
+        clarification_rephrase=(
+            "Could you rephrase your question to say whether you have "
+            "exceptional circumstances? Leave of absence is not normally "
+            "available in the first semester without them."
+        ),
+    ),
+    AmbiguityPattern(
+        trigger="refund",
+        qualifiers=["census", "how much", "exact", "approved schedule", "credit"],
+        clarification_direct=(
+            "Was the withdrawal or leave approved before or after the "
+            "census date? Refund eligibility is determined with reference "
+            "to the Approved Schedule of Fees and Charges and those dates."
+        ),
+        clarification_rephrase=(
+            "Could you rephrase your question to say whether this was "
+            "before or after the census date? Refund eligibility depends "
+            "on that timing and the Approved Schedule of Fees and Charges."
+        ),
+    ),
+    AmbiguityPattern(
+        trigger="break",
+        qualifiers=[
+            "leave of absence", "loa", "withdraw", "withdrawal", "drop", "defer",
+        ],
+        clarification_direct=(
+            "Do you mean an approved leave of absence, withdrawing from "
+            "a course, or cancelling your program? Those are different "
+            "processes with different fee and enrolment effects."
+        ),
+        clarification_rephrase=(
+            "Could you rephrase your question to say whether you mean "
+            "leave of absence, course withdrawal, or cancelling your "
+            "program? Those processes differ."
+        ),
+    ),
+    AmbiguityPattern(
+        trigger="defer",
+        qualifiers=["special consideration", "deferred", "admissions", "offer"],
+        clarification_direct=(
+            "Do you mean a deferred assessment through special consideration, "
+            "or deferring an offer before you enrol? Those are different processes."
+        ),
+        clarification_rephrase=(
+            "Could you rephrase your question to say whether you mean a "
+            "deferred assessment through special consideration, or deferring "
+            "an offer before enrolment? Those processes differ."
+        ),
+    ),
+    AmbiguityPattern(
+        trigger="missed",
+        qualifiers=[
+            "re-enrol", "re-enrolment", "special consideration", "extension",
+            "ago", "working day",
+        ],
+        clarification_direct=(
+            "How long ago was the due date, and are you asking about an "
+            "extension or special consideration? The applicable pathway "
+            "changes once the extension application window has passed."
+        ),
+        clarification_rephrase=(
+            "Could you rephrase your question to say how long ago the due "
+            "date was, and whether you mean an extension or special "
+            "consideration? The pathway depends on that timing."
+        ),
+    ),
 ]
 
 

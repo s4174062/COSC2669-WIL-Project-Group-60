@@ -1,39 +1,272 @@
 [
   {
     "question": "I have an assessment in three days and need more time",
+    "type": "ambiguous",
     "is_ambiguous": true,
-    "expected_clarification": "Should ask what type of assessment (exam/assignment/etc) and whether the student means an extension or special consideration.",
+    "expected_clarification": "Should ask what type of assessment and whether the student means an extension or special consideration.",
     "clarification_response": "it's an exam and I'd like special consideration",
     "expected_answer": "Apply for special consideration, ideally before the assessment and normally within five working days after the assessment date, with supporting evidence.",
-    "source_doc": "assessment_and_flexibility_policy"
+    "source_doc": "assessment_flexibility"
   },
   {
     "question": "I have an exam in three days, can I get an extension?",
+    "type": "clear",
     "is_ambiguous": false,
     "expected_clarification": null,
     "clarification_response": null,
-    "expected_answer": "Extensions are for short-term unforeseen circumstances generally; special consideration is the more likely process for exam-related issues.",
-    "source_doc": "assessment_and_flexibility_policy"
+    "expected_answer": "Extensions are available for unforeseen short-term circumstances and must be applied for at least one working day before the due date. Special consideration is a separate pathway often used for exam-related issues; the documents do not ban exam extensions outright.",
+    "source_doc": "assessment_flexibility"
   },
   {
     "question": "How long before an assessment due date do I need to apply for an extension?",
+    "type": "clear",
+    "is_ambiguous": false,
+    "expected_clarification": null,
+    "clarification_response": null,
     "expected_answer": "Applications are submitted to the school/industry cluster at least one working day before the due date.",
-    "source_doc": "assessment_flexibility",
-    "type": "clear"
+    "source_doc": "assessment_flexibility"
   },
   {
-    "question": "Can I get an extension without supporting documentation?",
-    "expected_answer": "Yes, up to seven days, at the course coordinator's discretion.",
-    "source_doc": "placeholder_policy"
+    "question": "How long of an extension can I get for an assignment?",
+    "type": "clear",
+    "is_ambiguous": false,
+    "expected_clarification": null,
+    "clarification_response": null,
+    "expected_answer": "If approved, an extension can be for up to one week (seven calendar days) after the due date.",
+    "source_doc": "assessment_flexibility"
+  },
+  {
+    "question": "What's the maximum period of leave of absence I can take?",
+    "type": "clear",
+    "is_ambiguous": false,
+    "expected_clarification": null,
+    "clarification_response": null,
+    "expected_answer": "A single leave of absence must not exceed one year. For coursework students the total maximum is 50% of program duration unless exceptional circumstances apply.",
+    "source_doc": "leave_of_absence"
+  },
+  {
+    "question": "Can I get a refund if I withdraw from a course?",
+    "type": "missing_information",
+    "is_ambiguous": true,
+    "expected_clarification": "Should ask whether the withdrawal was before or after the census date.",
+    "clarification_response": "I withdrew before the census date",
+    "expected_answer": "A course withdrawal by the census date does not incur an academic penalty. Refund eligibility is determined with reference to the Approved Schedule of Fees and Charges. The system cannot calculate an individual refund amount.",
+    "source_doc": "enrolment_procedure"
   },
   {
     "question": "What is the capital of France?",
+    "type": "unsupported",
     "is_ambiguous": false,
     "expected_clarification": null,
     "clarification_response": null,
     "expected_answer": "I don't have enough information to answer that.",
     "source_doc": "N/A (adversarial/out-of-scope test case)"
+  },
+  {
+    "question": "My assignment is due in three days, but I have become sick. What should I do?",
+    "type": "paired",
+    "is_ambiguous": false,
+    "expected_clarification": null,
+    "clarification_response": null,
+    "expected_answer": "An extension may be relevant for unforeseen short-term illness. Apply to the school/industry cluster at least one working day before the due date. An approved extension can be up to seven calendar days after the due date.",
+    "source_doc": "assessment_flexibility"
+  },
+  {
+    "question": "My assignment is due in three days and I need more time. Can I get an extension?",
+    "type": "missing_information",
+    "is_ambiguous": true,
+    "expected_clarification": "Should ask what unforeseen circumstance is preventing completion.",
+    "clarification_response": "I became sick unexpectedly yesterday.",
+    "expected_answer": "Unexpected short-term illness can be an unforeseen short-term circumstance for an extension. Apply at least one working day before the due date.",
+    "source_doc": "assessment_flexibility"
+  },
+  {
+    "question": "My assignment was due three days ago, but I was sick. What should I do?",
+    "type": "paired",
+    "is_ambiguous": false,
+    "expected_clarification": null,
+    "clarification_response": null,
+    "expected_answer": "The extension application must be submitted at least one working day before the due date, so that window has passed. Special consideration may be relevant for unexpected short-term illness and is normally requested within five working days after the assessment date. Do not advise that the student can still apply for an extension.",
+    "source_doc": "assessment_flexibility"
+  },
+  {
+    "question": "My assignment is one day past the due date. Can I still apply for an extension?",
+    "type": "paired",
+    "is_ambiguous": false,
+    "expected_clarification": null,
+    "clarification_response": null,
+    "expected_answer": "No. Extension applications must be submitted at least one working day before the due date. One day after the due date, special consideration is the documented after-the-date pathway, normally within five working days of the assessment date.",
+    "source_doc": "assessment_flexibility"
+  },
+  {
+    "question": "My assessment was due seven working days ago, but I was sick. Can I still apply for special consideration?",
+    "type": "deadline_sensitive",
+    "is_ambiguous": false,
+    "expected_clarification": null,
+    "clarification_response": null,
+    "expected_answer": "Applications lodged more than five working days after the due date are not considered unless the student provides compelling or compassionate reasons and evidence with the application.",
+    "source_doc": "assessment_flexibility"
+  },
+  {
+    "question": "RMIT told me that my special consideration application is incomplete. How long do I have to provide the missing evidence?",
+    "type": "clear",
+    "is_ambiguous": false,
+    "expected_clarification": null,
+    "clarification_response": null,
+    "expected_answer": "The student has five working days after being notified to submit the missing information or documentary evidence.",
+    "source_doc": "assessment_flexibility"
+  },
+  {
+    "question": "How long should it take to receive an outcome for my extension application?",
+    "type": "clear",
+    "is_ambiguous": false,
+    "expected_clarification": null,
+    "clarification_response": null,
+    "expected_answer": "The school or industry cluster should notify the student within two working days of the application being submitted.",
+    "source_doc": "assessment_flexibility"
+  },
+  {
+    "question": "How long should a complete special consideration application take to process?",
+    "type": "clear",
+    "is_ambiguous": false,
+    "expected_clarification": null,
+    "clarification_response": null,
+    "expected_answer": "Complete applications that include supporting documentation and evidence are considered and responded to within 10 working days.",
+    "source_doc": "assessment_flexibility"
+  },
+  {
+    "question": "I have a long-term health condition and regularly need extra time in exams. What pathway should I use?",
+    "type": "pathway_selection",
+    "is_ambiguous": false,
+    "expected_clarification": null,
+    "clarification_response": null,
+    "expected_answer": "Equitable assessment arrangements are for foreseeable needs such as a long-term health condition. Apply to Equitable Learning Services with supporting documentation from a treating health practitioner.",
+    "source_doc": "assessment_flexibility"
+  },
+  {
+    "question": "I missed the published re-enrolment deadline. Am I automatically allowed to continue my program?",
+    "type": "clear",
+    "is_ambiguous": false,
+    "expected_clarification": null,
+    "clarification_response": null,
+    "expected_answer": "No. A higher education student who fails to re-enrol by the published deadline must seek permission to continue; permission to enrol or take leave of absence is granted at RMIT's discretion.",
+    "source_doc": "enrolment_procedure"
+  },
+  {
+    "question": "Can I change my enrolled courses whenever I want?",
+    "type": "clear",
+    "is_ambiguous": false,
+    "expected_clarification": null,
+    "clarification_response": null,
+    "expected_answer": "Enrolment can be varied only in accordance with the published deadline and must comply with program requirements, prescribed dates, visa requirements and any enrolment instructions.",
+    "source_doc": "enrolment_procedure"
+  },
+  {
+    "question": "Will I receive an academic penalty if I drop a course before the census date?",
+    "type": "clear",
+    "is_ambiguous": false,
+    "expected_clarification": null,
+    "clarification_response": null,
+    "expected_answer": "A course withdrawal up to and including the census date does not incur an academic penalty. A withdrawal may still have financial effects under the Approved Schedule of Fees and Charges.",
+    "source_doc": "enrolment_procedure"
+  },
+  {
+    "question": "Can I enrol in more courses than the standard full-time load?",
+    "type": "clear",
+    "is_ambiguous": false,
+    "expected_clarification": null,
+    "clarification_response": null,
+    "expected_answer": "Students may apply to enrol above the standard full-time load, subject to approval from the relevant RMIT authority.",
+    "source_doc": "enrolment_procedure"
+  },
+  {
+    "question": "Can I take leave of absence during my first semester?",
+    "type": "missing_information",
+    "is_ambiguous": true,
+    "expected_clarification": "Should ask whether the student has exceptional circumstances.",
+    "clarification_response": "No, I do not have exceptional circumstances.",
+    "expected_answer": "Leave of absence is not normally available in the first semester or study period unless the student can demonstrate exceptional circumstances.",
+    "source_doc": "leave_of_absence"
+  },
+  {
+    "question": "I am an international student on a student visa. Can I take leave of absence for a holiday?",
+    "type": "clear",
+    "is_ambiguous": false,
+    "expected_clarification": null,
+    "clarification_response": null,
+    "expected_answer": "Leave of absence for a student-visa holder studying in Australia can only be granted on compassionate or compelling grounds. A holiday alone is not established as such a ground; the student should seek visa advice, including from the Department of Home Affairs.",
+    "source_doc": "leave_of_absence"
+  },
+  {
+    "question": "I accepted an RMIT offer but have not enrolled yet. Can I apply for leave of absence?",
+    "type": "clear",
+    "is_ambiguous": false,
+    "expected_clarification": null,
+    "clarification_response": null,
+    "expected_answer": "Leave of absence is not available to prospective students who have not yet enrolled. They may defer the offered place through admissions processes instead.",
+    "source_doc": "leave_of_absence"
+  },
+  {
+    "question": "What happens to my fees if my leave of absence is approved before the census date?",
+    "type": "clear",
+    "is_ambiguous": false,
+    "expected_clarification": null,
+    "clarification_response": null,
+    "expected_answer": "Students who take approved leave of absence before the relevant census date will have the relevant paid fees re-credited, excluding applicable penalties. The credit can apply to future fees or the student may apply for a refund.",
+    "source_doc": "leave_of_absence"
+  },
+  {
+    "question": "What happens if I request leave of absence after the census date?",
+    "type": "clear",
+    "is_ambiguous": false,
+    "expected_clarification": null,
+    "clarification_response": null,
+    "expected_answer": "Students remain liable for fees and may incur an academic penalty if they request leave of absence after the relevant census date. In special circumstances they may apply for a remission of debt.",
+    "source_doc": "leave_of_absence"
+  },
+  {
+    "question": "Exactly how much money will RMIT refund to my bank account?",
+    "type": "insufficient_evidence",
+    "is_ambiguous": false,
+    "expected_clarification": null,
+    "clarification_response": null,
+    "expected_answer": "I don't have enough information to answer that.",
+    "source_doc": "refund_of_fees"
+  },
+  {
+    "question": "I need more time",
+    "type": "ambiguous",
+    "is_ambiguous": true,
+    "expected_clarification": "Should ask whether the student means an extension or special consideration, and for which assessment.",
+    "clarification_response": "it's an assignment and I want an extension because I was sick",
+    "expected_answer": "Unexpected short-term illness can support an extension application, which must be submitted at least one working day before the due date.",
+    "source_doc": "assessment_flexibility"
+  },
+  {
+    "question": "Can I take a break from my studies?",
+    "type": "ambiguous",
+    "is_ambiguous": true,
+    "expected_clarification": "Should ask whether the student means leave of absence, course withdrawal, or cancelling the program.",
+    "clarification_response": "I want an approved leave of absence for one semester",
+    "expected_answer": "A currently enrolled student in an award program may apply for leave of absence for a specified period not exceeding one year, subject to eligibility rules.",
+    "source_doc": "leave_of_absence"
+  },
+  {
+    "question": "I missed my assignment deadline, what now?",
+    "type": "ambiguous",
+    "is_ambiguous": true,
+    "expected_clarification": "Should ask how long ago the due date was and whether they mean an extension or special consideration.",
+    "clarification_response": "It was due three days ago and I was sick",
+    "expected_answer": "The extension application window (at least one working day before the due date) has passed. Special consideration may apply for unexpected short-term illness and is normally requested within five working days after the assessment date.",
+    "source_doc": "assessment_flexibility"
+  },
+  {
+    "question": "How do I defer my exam?",
+    "type": "ambiguous",
+    "is_ambiguous": true,
+    "expected_clarification": "Should ask whether the student means a deferred assessment through special consideration or deferring an offer before enrolment.",
+    "clarification_response": "I want a deferred assessment through special consideration because I was sick",
+    "expected_answer": "A deferred assessment can be an outcome of special consideration. Apply with supporting evidence, ideally before the assessment and normally within five working days after the assessment date.",
+    "source_doc": "assessment_flexibility"
   }
 ]
-
-
