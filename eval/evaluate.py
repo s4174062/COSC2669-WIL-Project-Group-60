@@ -13,6 +13,7 @@ and reports:
   - faithfulness of generated answers for BOTH baseline and enhanced, so the
     two can be compared, plus how many low-faithfulness answers each one
     actually showed the user
+  - retrieval Hit@3 and NDCG@3 vs labelled source_doc (document-level)
   - a CSV with blank grade columns for manual correctness grading
 
 Run from anywhere:  python eval/evaluate.py
@@ -27,12 +28,22 @@ import os
 import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.append(os.path.join(HERE, ".."))
 sys.path.append(os.path.join(HERE, "..", "app"))
 sys.path.append(os.path.join(HERE, "..", "verification"))
+sys.path.append(os.path.join(HERE, "..", "retrieval"))
+sys.path.append(os.path.join(HERE, "..", "ingestion"))
+sys.path.append(HERE)
+
+from config import DEFAULT_TOP_K, add_project_paths
+
+add_project_paths()
 
 from pipeline import ask, FAITHFULNESS_THRESHOLD
 from pipeline_conversational import ask_conversational
 from faithfulness_check import check_faithfulness
+from retriever import retrieve_hits
+from retrieval_metrics import labelled_source, score_hits
 
 TEST_SET_PATH = os.path.join(HERE, "test_questions.json")
 RESULTS_DIR = os.path.join(HERE, "results")
@@ -60,6 +71,14 @@ def make_scripted_responder(response):
         return response if response else fallback
 
     return responder
+
+
+def _retrieval_scores(question: str, source_doc: str | None, top_k: int) -> dict | None:
+    expected = labelled_source(source_doc)
+    if expected is None:
+        return None
+    hits = retrieve_hits(question, top_k=top_k)
+    return score_hits(hits, expected, k=DEFAULT_TOP_K)
 
 
 def run_baseline(question: str) -> dict:
@@ -90,6 +109,11 @@ def evaluate(test_path: str = TEST_SET_PATH, csv_path: str = CSV_PATH) -> None:
 
     clarified_questions = 0
     resolved_to_answer = 0
+
+    baseline_ndcgs = []
+    baseline_hits = []
+    resolved_ndcgs = []
+    resolved_hits = []
 
     for item in test_set:
         question = item["question"]
@@ -135,13 +159,31 @@ def evaluate(test_path: str = TEST_SET_PATH, csv_path: str = CSV_PATH) -> None:
             elif draft_score < FAITHFULNESS_THRESHOLD:
                 enhanced_low_delivered += 1  # should never happen; sanity counter
 
+        source_doc = item.get("source_doc", "")
+        baseline_retrieval = _retrieval_scores(question, source_doc, DEFAULT_TOP_K)
+        if baseline_retrieval:
+            baseline_hits.append(baseline_retrieval["hit_at_k"])
+            baseline_ndcgs.append(baseline_retrieval["ndcg_at_k"])
+
+        resolved_retrieval = None
+        if resolved["type"] == "answer":
+            resolved_query = resolved.get("merged_question") or question
+            resolved_rounds = resolved.get("clarification_rounds") or 0
+            resolved_top_k = DEFAULT_TOP_K if resolved_rounds == 0 else DEFAULT_TOP_K + 2
+            resolved_retrieval = _retrieval_scores(resolved_query, source_doc, resolved_top_k)
+            if resolved_retrieval:
+                resolved_hits.append(resolved_retrieval["hit_at_k"])
+                resolved_ndcgs.append(resolved_retrieval["ndcg_at_k"])
+
         rows.append({
             "question": question,
             "is_ambiguous": expected_ambiguous,
-            "source_doc": item.get("source_doc", ""),
+            "source_doc": source_doc,
             "expected_answer": item.get("expected_answer") or "",
             "baseline_answer": baseline["text"],
             "baseline_faithfulness": baseline["faithfulness_score"],
+            "baseline_hit_at_3": None if not baseline_retrieval else baseline_retrieval["hit_at_k"],
+            "baseline_ndcg_at_3": None if not baseline_retrieval else baseline_retrieval["ndcg_at_k"],
             "detect_only_type": detect_only["type"],
             "detect_only_text": detect_only["text"],
             "resolved_type": resolved["type"],
@@ -150,6 +192,8 @@ def evaluate(test_path: str = TEST_SET_PATH, csv_path: str = CSV_PATH) -> None:
             "resolved_draft_faithfulness": (resolved["faithfulness"] or {}).get("score"),
             "resolved_withheld": resolved["suppressed"],
             "resolved_withheld_draft": resolved["original_answer"] or "",
+            "resolved_hit_at_3": None if not resolved_retrieval else resolved_retrieval["hit_at_k"],
+            "resolved_ndcg_at_3": None if not resolved_retrieval else resolved_retrieval["ndcg_at_k"],
             "grade_baseline": "",
             "grade_resolved": "",
             "grader": "",
@@ -192,6 +236,13 @@ def evaluate(test_path: str = TEST_SET_PATH, csv_path: str = CSV_PATH) -> None:
     print("  Note: the two means cover different question sets/queries where clarification happened,")
     print("  and 'enhanced shows 0' holds by construction. The real cost of withholding is correct")
     print("  answers wrongly withheld, which only manual grading can measure (see CSV).")
+
+    print("\n=== Retrieval ranking (binary relevance vs labelled source_doc) ===")
+    print("  A hit is relevant if metadata.source matches the question label.")
+    print("  Out-of-scope items (no catalogue source_doc) are excluded.")
+    print("  This is document-level NDCG, not clause-level; manual grades still decide correctness.")
+    print(f"  Baseline  mean NDCG@{DEFAULT_TOP_K} {fmt(mean(baseline_ndcgs))} | Hit@{DEFAULT_TOP_K} {fmt(mean(baseline_hits))} over {len(baseline_ndcgs)} questions")
+    print(f"  Resolved  mean NDCG@{DEFAULT_TOP_K} {fmt(mean(resolved_ndcgs))} | Hit@{DEFAULT_TOP_K} {fmt(mean(resolved_hits))} over {len(resolved_ndcgs)} questions")
 
     os.makedirs(os.path.dirname(csv_path), exist_ok=True)
     with open(csv_path, "w", newline="", encoding="utf-8-sig") as f:
